@@ -10,29 +10,60 @@
 <body>
     <div id="container">
 
-        <h1 class=text-center>LOGO</h1>
+        <h1 class="text-center txtlogo">Create your own questionnaire</h1>
 
-        <div id="button-container">
-            <div id="button" class="yellow">
-                <p>New questionary</p>
+        <div class="main-buttons">
+            <div id="button-container">
+                <div id="button" class="yellow">
+                    <p>New questionary</p>
+                </div>
+            </div>
+
+            <div id="button-container">
+                <div id="button" class="green">
+                    <p>In progress</p>
+                </div>
+            </div>
+
+            <div id="button-container">
+                <div id="button" class="blue">
+                    <p>History</p>
+                </div>
             </div>
         </div>
 
-        <div id="button-container">
-            <div id="button" class="green">
-                <p>In progress</p>
-            </div>
-        </div>
-
-        <div id="button-container">
-            <div id="button" class="blue">
-                <p>History</p>
+        <div class="optionsCointener">
+            <div class="creatingNewQuestionnairey ">
+                <div class="inputsPossition">
+                    <form class="form-style-4" action="" method="post">
+                        <label for="field1">
+                            <span>Enter questionary name</span>
+                            <input type="text" name="field1" required="true" />
+                        </label>
+                        <label for="field2">
+                            <span>Your question</span>
+                            <input type="text" name="field2" required="true" />
+                        </label>
+                        <label for="field3">
+                            <span>Answer</span>
+                            <input type="text" name="field3" required="true" />
+                        </label>
+                        <span class="newAnswer"></span>
+                        <label>
+                            <span>&nbsp;</span>
+                            <input type="submit" value="Create questionnaire" />
+                        </label>
+                        <label class="addAnserButton">
+                            <span>&nbsp;</span>
+                            <input type="button" value="Add Answer" />
+                        </label>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
-
-    <script src="JS\jquery-2.2.3.js"></script>
+    <script src="JS\jQuery.js"></script>
     <script src="JS\javaScript.js"></script>
 </body>
 
