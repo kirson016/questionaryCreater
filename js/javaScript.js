@@ -5,18 +5,30 @@ var arrayOfQuests = new Array
 $(document).ready(function() {
 
     class questionnaire {
-        constructor(name, question, answers, time) {
+        constructor(name, question, answers, time, data) {
             this.name = name;
             this.question = question;
             this.answers = answers;
             this.time = time;
+            this.data = data;
         }
         toString() {
             return '(' + this.x + ', ' + this.y + ')';
         }
         check() {
-            alert(this.name + " " + this.question + " " + this.answers + " " + this.time);
+            alert(this.name + " " + this.question + " " + this.answers + " " + this.time + " " + this.data);
         }
+        dataString() {
+            var dateTime = "Now: " + this.data.getDate() + "/" +
+                (this.data.getMonth() + 1) + "/" +
+                this.data.getFullYear() + " @ " +
+                this.data.getHours() + ":" +
+                this.data.getMinutes() + ":" +
+                this.data.getSeconds();
+
+            alert(dateTime);
+        }
+
     }
 
     function adjust_textarea(h) {
@@ -41,47 +53,29 @@ $(document).ready(function() {
         var classAnswer = $(".questionnaireAnswer").val();
         var classTime = parseInt($(".questionnaireTime").val());
         var space = " ";
+        var currentDate = new Date();
         condiction = (isNumeric(classTime));
 
         if (className.length != 0 && classQuestion.length != 0 && classAnswer.length != 0 && condiction === true) {
-            var questionnaireClass = new questionnaire(className, classQuestion, classAnswer, classTime);
+            var questionnaireClass = new questionnaire(className, classQuestion, classAnswer, classTime, currentDate);
             $(".questionnaireName").val(space);
             $(".questionnaireQuestion").val(space);
             $(".questionnaireAnswer").val(space);
             $(".questionnaireTime").val(space);
             arrayOfQuests.push(questionnaireClass);
 
-            var hours;
-            var minutes;
-            var date = function() {
-                var currentDate = new Date();
-                var dateTime = "Now: " + currentDate.getDate() + "/" +
-                    (currentDate.getMonth() + 1) + "/" +
-                    currentDate.getFullYear() + " @ " +
-                    currentDate.getHours() + ":" +
-                    currentDate.getMinutes() + ":" +
-                    currentDate.getSeconds();
-                hours = currentDate.getHours();
-                minutes = currentDate.getMinutes();
-                alert(dateTime);
-            }
-            var asd = function() {
+            var hours = currentDate.getHours();
+            var minutes = currentDate.getMinutes();
+
+            questionnaireClass.dataString()
+
+            function time() {
                 var hoursM = hours * 60 + minutes;
                 var hoursMm = hours * 60 + minutes + classTime;
-                
-
-
-
-                var value = 3.25;
-                var fractionalPart = last % 1;
-                var integralPart = last - fractionalPart;
-
-
-
-                alert(hoursM + " " + hoursMm + " " + last+" "+integralPart);
+                var hoursEnd = Math.floor(hoursMm / 60);
+                var minutesEnd = hoursMm % 60;
+                alert(hoursEnd + ":" + minutesEnd);
             }
-            date();
-            asd();
 
 
         } else {
