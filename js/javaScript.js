@@ -1,4 +1,4 @@
-var htmlAddNewButton = '<label for="field3">    <span>Answer</span>    <input type="text" name="field3" required="true" />   </label>';
+var htmlAddNewButton = '<label for="field3">    <span>Answer</span>    <input type="text" name="field3" required="true" />   </label>'
 var arrayOfQuests = new Array
 
 
@@ -19,14 +19,14 @@ $(document).ready(function() {
             alert(this.name + " " + this.question + " " + this.answers + " " + this.time + " " + this.data);
         }
         dataString() {
-            var dateTime = "Now: " + this.data.getDate() + "/" +
+            var dateTime = this.data.getDate() + "/" +
                 (this.data.getMonth() + 1) + "/" +
                 this.data.getFullYear() + " @ " +
                 this.data.getHours() + ":" +
                 this.data.getMinutes() + ":" +
                 this.data.getSeconds();
 
-            alert(dateTime);
+            return (dateTime);
         }
 
     }
@@ -91,24 +91,32 @@ $(document).ready(function() {
 
     });
 
-    // $('.btnNewQuest').on('click', function() {
-    //     $(".inputsPossition").attr("style", "visibility: visible");
-    //     $(".btnInProgress'").attr("style", "visibility: hidden");
-    //     $(".btnHistory'").attr("style", "visibility: hidden");
-    // });
-    //
+    $('.btnNewQuest').on('click', function() {
+        $(".inputsPossition").attr("style", "visibility: visible");
+        $(".history").attr("style", "visibility: hidden");
+        // $(".inProgress'").attr("style", "visibility: hidden");
+    });
+
     // $('.btnInProgress').on('click', function() {
-    //   $(".main-buttons").attr("style", "visibility: hidden");
-    //   $(".btnInProgress'").attr("style", "visibility: visible");
-    //   $(".btnHistory'").attr("style", "visibility: hidden")
+    //   $(".inputsPossition").attr("style", "visibility: hidden");
+    //   $(".inProgress").attr("style", "visibility: visible");
+    //   $(".btnHistory").attr("style", "visibility: hidden")
+    //   for (var i = 0; i < arrayOfQuests.length; i++) {
+    //       var x = arrayOfQuests[i].name;
+    //       $('.thClass').after("thClass");}
     //
     // });
-    //
-    // $('.btnHistory').on('click', function() {
-    //   $(".btnNewQuest").attr("style", "visibility: hidden");
-    //   $(".btnInProgress'").attr("style", "visibility: hidden");
-    //   $(".btnHistory'").attr("style", "visibility: visible")
-    //
-    // });
+
+    $('.btnHistory').on('click', function() {
+        $(".inputsPossition").attr("style", "visibility: hidden");
+        // $(".inProgress").attr("style", "visibility: hidden");
+        $(".history").attr("style", "visibility: visible");
+        $('.theadClass').html(" ");
+        for (var i = 0; i < arrayOfQuests.length; i++) {
+            var table = '  <tr> <td><strong>' + arrayOfQuests[i].name + '</strong></td><td>' + arrayOfQuests[i].dataString() + ' || Duration: (' + arrayOfQuests[i].time + ')' + '</td><td>' + arrayOfQuests[i].question + '</td></tr>';
+            $('.theadClass').append(table);
+        }
+
+    });
 
 });
