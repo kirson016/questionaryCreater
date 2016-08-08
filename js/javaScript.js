@@ -112,10 +112,14 @@ $(document).ready(function() {
         // $(".inProgress").attr("style", "visibility: hidden");
         $(".history").attr("style", "visibility: visible");
         $('.theadClass').html(" ");
+        if (arrayOfQuests.length==0) {
+$('.theadClass').append('  <tr> <td><strong>Nothing to show in history</strong></td><td>' );
+        }
+        else{
         for (var i = 0; i < arrayOfQuests.length; i++) {
             var table = '  <tr> <td><strong>' + arrayOfQuests[i].name + '</strong></td><td>' + arrayOfQuests[i].dataString() + ' || Duration: (' + arrayOfQuests[i].time + ')' + '</td><td>' + arrayOfQuests[i].question + '</td></tr>';
             $('.theadClass').append(table);
-        }
+        }}
 
     });
 

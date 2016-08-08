@@ -192,7 +192,7 @@ html, body {
     height: 50%;
 }
 .inputsPossition {
-    visibility: hidden;
+
     position: relative;
     left: 50%;
     margin-left: -225px;
@@ -204,6 +204,7 @@ html, body {
 }
 
 .history{
+  visibility: hidden;
   left: 50%;
   margin-left: -10px;
   top: 50%;
