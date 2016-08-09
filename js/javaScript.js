@@ -12,12 +12,15 @@ $(document).ready(function() {
             this.time = time;
             this.data = data;
         }
+
         toString() {
             return '(' + this.x + ', ' + this.y + ')';
         }
+
         check() {
             alert(this.name + " " + this.question + " " + this.answers + " " + this.time + " " + this.data);
         }
+
         dataString() {
             var dateTime = this.data.getDate() + "/" +
                 (this.data.getMonth() + 1) + "/" +
@@ -29,16 +32,29 @@ $(document).ready(function() {
             return (dateTime);
         }
 
+        checkProgress() {
+            var min = this.data.getMinutes();
+            var hou = this.data.getHours();
+            var fullTimeInMinutes = hou * 60 + min + this.time;
+
+            var dateNow = new Date();
+            var hoursNow = dateNow.getHours();
+            var minutesNow = dateNow.getMinutes();
+            var hoursM = hoursNow * 60 + minutesNow;
+
+            if (fullTimeInMinutes > hoursM) {
+                return (true);
+            } else {
+                return (false);
+            }
+        }
+
     }
 
     function adjust_textarea(h) {
         h.style.height = "30px";
         h.style.height = (h.scrollHeight) + "px";
     }
-
-    // $('.addAnserButton').on('click', function() {
-    //     $('.newAnswer').after(htmlAddNewButton);
-    // });
 
     $('.btnNewQuest').on('click', function() {
         $(".inputsPossition").css("visibility", "visible");
@@ -64,20 +80,6 @@ $(document).ready(function() {
             $(".questionnaireTime").val(space);
             arrayOfQuests.push(questionnaireClass);
 
-            var hours = currentDate.getHours();
-            var minutes = currentDate.getMinutes();
-
-            questionnaireClass.dataString()
-
-            function time() {
-                var hoursM = hours * 60 + minutes;
-                var hoursMm = hours * 60 + minutes + classTime;
-                var hoursEnd = Math.floor(hoursMm / 60);
-                var minutesEnd = hoursMm % 60;
-                alert(hoursEnd + ":" + minutesEnd);
-            }
-
-
         } else {
             alert("You need type something in input or type number in Time input");
         }
@@ -94,32 +96,41 @@ $(document).ready(function() {
     $('.btnNewQuest').on('click', function() {
         $(".inputsPossition").attr("style", "visibility: visible");
         $(".history").attr("style", "visibility: hidden");
-        // $(".inProgress'").attr("style", "visibility: hidden");
     });
 
-    // $('.btnInProgress').on('click', function() {
-    //   $(".inputsPossition").attr("style", "visibility: hidden");
-    //   $(".inProgress").attr("style", "visibility: visible");
-    //   $(".btnHistory").attr("style", "visibility: hidden")
-    //   for (var i = 0; i < arrayOfQuests.length; i++) {
-    //       var x = arrayOfQuests[i].name;
-    //       $('.thClass').after("thClass");}
-    //
-    // });
+    $('.btnInProgress').on('click', function() {
+        $(".inputsPossition").attr("style", "visibility: hidden");
+        $(".history").attr("style", "visibility: visible");
+        $('.theadClass').html(" ");
+
+        var check = false;
+
+        for (var i = 0; i < arrayOfQuests.length; i++) {
+            var condiction = arrayOfQuests[i].checkProgress();
+            if (condiction) {
+                var table = '  <tr> <td><strong>' + arrayOfQuests[i].name + '</strong></td><td>' + arrayOfQuests[i].dataString() + ' || Duration: (' + arrayOfQuests[i].time + ')' + '</td><td>' + arrayOfQuests[i].question + '</td></tr>';
+                $('.theadClass').append(table);
+                check = true;
+            }
+        }
+        if (check === false) {
+            $('.theadClass').append('  <tr> <td><strong>No questionnaire in progress</strong></td><td>');
+        }
+
+    });
 
     $('.btnHistory').on('click', function() {
         $(".inputsPossition").attr("style", "visibility: hidden");
-        // $(".inProgress").attr("style", "visibility: hidden");
         $(".history").attr("style", "visibility: visible");
         $('.theadClass').html(" ");
-        if (arrayOfQuests.length==0) {
-$('.theadClass').append('  <tr> <td><strong>Nothing to show in history</strong></td><td>' );
+        if (arrayOfQuests.length == 0) {
+            $('.theadClass').append('  <tr> <td><strong>Nothing to show in history</strong></td><td>');
+        } else {
+            for (var i = 0; i < arrayOfQuests.length; i++) {
+                var table = '  <tr> <td><strong>' + arrayOfQuests[i].name + '</strong></td><td>' + arrayOfQuests[i].dataString() + ' || Duration: (' + arrayOfQuests[i].time + 'min)' + '</td><td>' + arrayOfQuests[i].question + '</td></tr>';
+                $('.theadClass').append(table);
+            }
         }
-        else{
-        for (var i = 0; i < arrayOfQuests.length; i++) {
-            var table = '  <tr> <td><strong>' + arrayOfQuests[i].name + '</strong></td><td>' + arrayOfQuests[i].dataString() + ' || Duration: (' + arrayOfQuests[i].time + ')' + '</td><td>' + arrayOfQuests[i].question + '</td></tr>';
-            $('.theadClass').append(table);
-        }}
 
     });
 
