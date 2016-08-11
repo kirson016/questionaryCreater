@@ -9,7 +9,7 @@ html, body {
     position: fixed;
     top: 0;
     left: 0;
-    background: #005778;
+    background: #b3b3b3;
     width: 100%;
     height: 100%;
     overflow-y: auto;
@@ -184,19 +184,11 @@ html, body {
 .main-buttons {
     padding-top: 60px;
 }
-.creatingNewQuestionnairey {
-    margin-top: 155px;
-    background-color: #c4c4b0;
-    position: absolute;
-    width: 100%;
-    height: 50%;
-}
 .inputsPossition {
     position: relative;
     left: 50%;
     margin-left: -225px;
-    top: 50%;
-    margin-top: -145px;
+    top: 20%;
 }
 .addAnserButton {
     margin-top: -50px;
@@ -206,7 +198,10 @@ html, body {
     left: 50%;
     margin-left: -10px;
     top: 50%;
-    margin-top: -145px;
+    margin-top: -100px;
+}
+.searchHide{
+visibility: hidden; 
 }
 
 /*TABLE*/
@@ -290,4 +285,26 @@ tbody:hover td {
 tbody:hover tr:hover td {
     color: #444;
     text-shadow: 0 1px 0 #fff;
+}
+.container-1 input#search {
+    width: 300px;
+    height: 50px;
+    background: #2b303b;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #63717f;
+    padding-left: 45px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.container-1 input#search:hover, .container-1 input#search:focus, .container-1 input#search:active {
+    outline: none;
+    background: #ffffff;
+}
+.box {
+    margin-left: 40%;
+    margin-top: -5%;
+    padding-top: -50px;
 }
